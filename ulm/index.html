@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>FhG IIS SpatialGAN</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="assets/css/trackswitch.css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
+</head>
+
+<body>
+    <div class="article-clean">
+        <div class="container">
+            <div class="row">
+                <div class="text">
+                    <div class="intro", style="text-align: center">
+                        <h1 class="text-center"><br><br>GAN-Based Multi-Microphone Spatial Target Speaker Extraction<br></h1>
+                        <h5 class="text-center"><i> Shrishti Saha Shetu, Emanu&#235;l A. P. Habets, Andreas Brendel</i> <br><br></h5>
+                        <a href="https://www.iis.fraunhofer.de/en/ff/amm.html"> <img src="./assets/img/fhg_iis_logo.png" alt="FhG_IIS" width="240" height="77" ></img></a>
+                        <h5 class="text-center"> International Audio Laboratories Erlangen, Am Wolfsmantel 33, 91058 Erlangen, Germany</h5>
+                        <p class="text-center"><i>{shrishti.saha.shetu, emanuel.habets, andreas.brendel}@iis.fraunhofer.de</i> <br></p>
+                        <p class="text-center"> </p>
+                    </div>
+                    <div class="text">
+                        <h2>Abstract</h2>
+                        <p class="text-justify"> Spatial target speaker extraction isolates a desired speaker’s voice in multi-speaker environments using spatial cues, such as the DoA. Although recent DNN-based discriminative methods have shown significant performance improvements, the potential of generative approaches, such as generative adversarial networks (GANs), remains largely unexplored for this problem. In this work, we demonstrate that a GAN can effectively leverage both noisy mixtures and spatial information to extract and generate the target speaker’s speech. By conditioning the GAN on intermediate features of a discriminative spatial filtering model in addition to DoA, we enable steerable target extraction with high spatial resolution of 5 degree, outperforming state-of-the-art discriminative methods.<br></p>
+                        <figure></figure>
+                        <p></p>
+                    </div>
+                    <div id="Methods"></div>
+                    <div class="text">
+                    <h2>Evaluation Scenarios</h2>
+                        <p>In our work, we evaluate our proposed methods in two separate evaluation scenario against the baselines methods.<br> <br>
+
+                            Following you can find some processed samples with different Methods:
+                            <h2>1. Fixed-target scenario <a href="#Fixed-target scenario"> --> Go to the samples</a></h2> 
+                            <h2>2. Steerable-target scenario <a href="#Steerable-target scenario"> --> Go to the samples</a></h2> 
+
+
+                          <br>
+            <div id="Fixed-target scenario"></div>
+            <h2>1. Fixed-target scenario</h2>
+                        
+                    </p>
+                    <h5>Item 1 (Speaker: Male)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00011_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00011_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00011_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00011_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00011_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00011_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                    </p>
+                    <h5>Item 2 (Speaker: Male)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00038_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00038_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00038_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00038_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00038_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00038_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                    </p>
+                    <h5>Item 3 (Speaker: FeMale)</h5>
+                    <p>
+                    <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00077_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00077_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00077_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00077_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00077_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00077_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                    </p>
+                    <h5>Item 4 (Speaker: FeMale)</h5>
+                    <p>
+                         <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00146_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00146_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00146_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00146_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00146_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00146_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                    </p>
+                      <h5>Item 5 (Speaker: FeMale)</h5>
+                    <p>
+                   <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00236_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00236_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00236_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00236_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00236_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00236_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                    </p>
+                      <h5>Item 6 (Speaker: Male)</h5>
+                    <p>
+                    <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00335_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00335_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00335_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00335_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00335_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00335_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                      </p>
+                      <h5>Item 7 (Speaker: FeMale)</h5>
+                    <p>
+                  <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00411_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00411_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00411_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00411_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00411_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00411_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                     </p>
+                      <h5>Item 8 (Speaker: Male)</h5>
+                    <p>
+                    <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00463_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00463_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00463_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00463_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00463_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00463_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                   
+                    </p>
+                      <h5>Item 9 (Speaker: Male)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00528_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00528_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00528_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00528_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00528_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00528_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                  </p>
+                      <h5>Item 10 (Speaker: FeMale)</h5>
+                    <p>
+                <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./Fixmp3/mixture/input_00554_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./Fixmp3/SSFDemo/SSF_00554_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./Fixmp3/DSEDemo/DSENet_00554_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./Fixmp3/SPGAN/SPGAN_00554_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./Fixmp3/reverb/input_00554_mix_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./Fixmp3/dry/input_00554_mix_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+
+                    </p>
+
+
+            <br>
+            <div id="Steerable-target scenario"></div>
+            <h2>2. Steerable-target scenarioo</h2>
+                        
+                    </p>
+                    <h5>Item 1 (Target Angel: -110)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00002_mix*-110_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00002_mix*-110_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00002_mix*-110_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00002_mix*-110_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00002_mix*-110_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00002_mix*-110_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00002_mix*-110_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                    </p>
+                    <h5>Item 2 (Target Angel: 65)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00002_mix*65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00002_mix*65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00002_mix*65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00002_mix*65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00002_mix*65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00002_mix*65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00002_mix*65_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                    </p>
+                    <h5>Item 3 (Target Angel: 170)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00004_mix*170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00004_mix*170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00004_mix*170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00004_mix*170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00004_mix*170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00004_mix*170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00004_mix*170_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                    </p>
+                    <h5>Item 4 (Target Angel: -125)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00005_mix*-125_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00005_mix*-125_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00005_mix*-125_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00005_mix*-125_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00005_mix*-125_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00005_mix*-125_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00005_mix*-125_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                    </p>
+                     <h5>Item 5 (Target Angel: -170)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00007_mix*-170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00007_mix*-170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00007_mix*-170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00007_mix*-170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00007_mix*-170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00007_mix*-170_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00007_mix*-170_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                    </p>
+                      <h5>Item 6 (Target Angel: 130)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00008_mix*130_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00008_mix*130_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00008_mix*130_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00008_mix*130_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00008_mix*130_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00008_mix*130_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00008_mix*130_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                      </p>
+                    <h5>Item 7 (Target Angel: -70)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00009_mix*-70_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00009_mix*-70_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00009_mix*-70_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00009_mix*-70_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00009_mix*-70_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00009_mix*-70_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00009_mix*-70_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                     </p>
+                      <h5>Item 8 (Target Angel: -175)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00009_mix*-175_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00009_mix*-175_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00009_mix*-175_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00009_mix*-175_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00009_mix*-175_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00009_mix*-175_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00009_mix*-175_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                   
+                    </p>
+                      <h5>Item 9 (Target Angel: -65)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00010_mix*-65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00010_mix*-65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00010_mix*-65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00010_mix*-65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00010_mix*-65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00010_mix*-65_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00010_mix*-65_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                  </p>
+                      <h5>Item 10 (Target Angel: -150)</h5>
+                    <p>
+                        <div class="choir">
+                              <ts-track title="Mixture">
+                                  <ts-source src="./DemoVarmp3/mixture/input_00013_mix*-150_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="JNF"</sub> >
+                                  <ts-source src="./DemoVarmp3/SSFDemo/SSF_00013_mix*-150_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DSENet">
+                                <ts-source src="./DemoVarmp3/DSEDemo/DSENet_00013_mix*-150_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN">
+                                  <ts-source src="./DemoVarmp3/SPGAN/SPGAN_00013_mix*-150_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="SpatialGAN (JNF)">
+                                  <ts-source src="./DemoVarmp3/SPGANP/SPGANP_00013_mix*-150_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Reverberated Clean">
+                                  <ts-source src="./DemoVarmp3/reverb/input_00013_mix*-150_processed.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="Dry Clean">
+                                <ts-source src="./DemoVarmp3/dry/input_00013_mix*-150_processed.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+
+                    </p>
+
+
+
+                    
+
+ <div class="text">
+     <hr> </hr> 
+     <hr> </hr> 
+                        <h2>Conditions of Use</h2>
+                        <p> 1.Fraunhofer IIS generated this sound material based on material that is publicly available on VCTK dataset, <a href="https://github.com/microsoft/DNS-Challenge"> DNS Challenge </a> and <a href="https://github.com/karolpiczak/ESC-50"> ESC-50 </a>. </p>
+                         <p> 2.The content has been processed using generally accepted rules of technology as well as scientific care, but not actual attainment of any expected feature. </p>
+     <p> 3. With the exception of willful intent or gross negligence, Fraunhofer IIS shall not be liable that Open Source software or other third-party software is free from any error or claim or its fitness for a particular purpose, even if included within the Sound Material. </p>
+<p> 4.The Sound Material shall only be used for testing and appreciating noise reduction techniques and shall not be copied, publicly transmitted, distributed, lent or modified for any other reason. </p>
+     <p> 5.No representation or warranties are made or implied regarding the accuracy, non-infringement, or fitness for a particular purpose of Sound Material. </p>
+     <p> 6.Copyright and Permission notice shall be duplicated whenever Sound Material is copied, distributed, or publicly transmitted. </p>
+     <p> 6.The Sound material cannot be distributed with charge.   <a href="#Methods"> --> Go to Top</a> </p>
+
+
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/trackswitch.js"></script>
+    <script type="text/javascript">
+    var settings = {
+    onlyradiosolo: true,
+    repeat: true,
+};
+        jQuery(document).ready(function() {
+            jQuery(".choir").trackSwitch(settings); // All other players are default
+            jQuery(".piano").trackSwitch(settings);
+            jQuery(".guitar").trackSwitch(settings);
+            jQuery(".organ").trackSwitch(settings);
+        });
+    </script>
+</body>
+
+</html>
